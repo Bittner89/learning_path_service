@@ -5,7 +5,7 @@ from datetime import datetime
 MilestoneType = Literal["skill", "topic"]
 MilestoneStatus = Literal["pending", "in-progress", "done"]
 
-class GeneratRequest(BaseModel):
+class GenerateRequest(BaseModel):
     userId: Optional[str] = None
     desiredSkills: List[str] = Field(default_factory=list)
     desiredTopics: List[str] = Field(default_factory=list)
