@@ -9,5 +9,5 @@ def get_json(url: str, timeout: int = 10) -> Any:
 
     if isinstance(data, dict) and "data" in data and isinstance(data["data"], list):
         return data["data"]
-    
+
     return data
