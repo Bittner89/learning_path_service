@@ -25,3 +25,9 @@ def fetch_resources() -> List[Dict[str, Any]]:
             item["id"] = str(item["_id"])
     
     return items
+
+
+
+
+
+

@@ -31,4 +31,8 @@ class LearningPath(BaseModel):
     milestones: List[Milestone]
     createdAt: datetime
     updatedAt: datetime
-            
+
+
+
+
+

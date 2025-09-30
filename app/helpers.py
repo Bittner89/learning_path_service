@@ -6,6 +6,7 @@ from datetime import datetime
 def gen_id(prefix: str) -> str:
     return f"{prefix}-{uuid.uuid4()}"
 
+
 def now_dt():
     return datetime.now()
 

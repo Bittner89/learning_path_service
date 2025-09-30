@@ -25,7 +25,7 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return {"service": "learning-path-generator", "docs":"/docs", "health":"/healthz"}
+    return {"service": "learning-path-generator", "docs":"/docs", "health": "/healthz"}
 
 
 @app.get("/healthz")
@@ -44,7 +44,7 @@ def generate_path(body: GenerateRequest = Body(...)):
         skills = fetch_skills()
         resources = fetch_resources()
     except Exception as e:
-        raise HTTPException(502,f"Upstream error: {e}")
+        raise HTTPException(502, f"Upstream error: {e}")
     
     try:
         plan = ask_openai_for_plan(
@@ -70,7 +70,7 @@ def generate_path(body: GenerateRequest = Body(...)):
         })
 
     doc = {
-        "pathId":gen_id("lp"),
+        "pathId": gen_id("lp"),
         "userId": body.userId,
         "goals": {"skills": body.desiredSkills, "topics": body.desiredTopics},
         "summary": plan.get("summary", ""),
@@ -88,16 +88,17 @@ def generate_path(body: GenerateRequest = Body(...)):
 @app.get("/paths", response_model=List[LearningPath])
 def list_paths(userId: Optional[str] = Query(None)):
     query = {}
-
+    
     if userId:
         query["userId"] = userId
-
+    
     items = list(paths.find(query).sort("createdAt", -1))
 
     for item in items:
         item.pop("_id", None)
 
     return items
+
 
 @app.get("/paths/{pathId}", response_model=LearningPath)
 def get_path(pathId: str = Path(...)):
